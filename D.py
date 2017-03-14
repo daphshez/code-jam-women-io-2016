@@ -86,12 +86,17 @@ from CodeJam import CodeJamProblem
 class D(CodeJamProblem):
     def __init__(self):
         super().__init__('D')
-
+        
     def generate_test_cases(self, input_file):
-        pass
+        with open(input_file) as f:
+            for _ in range(int(next(f).strip())):
+                next(f)
+                yield next(f).strip().split(" ")
 
-    def solve(self, t):
-        pass
+    def solve(self, pwds):
+        assert len(pwds) <= 50, "no solution for more than that, for now!"
+        if next((pw for pw in pwds if len(pw) == 1), default=None) is not None:
+            return "Impossible"
 
 
 
