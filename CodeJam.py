@@ -10,9 +10,14 @@ class CodeJamProblem:
         self.name = name
         self.result_formatter = result_formatter
 
-    # override this!
     def generate_test_cases(self, input_file):
-        return []
+        with open(input_file) as f:
+            for _ in range(int(next(f).strip())):
+                yield self.generate_test_case(f)
+
+    # override this!
+    def generate_test_case(self, f):
+        return None
 
     # override this!
     def solve(self, t):

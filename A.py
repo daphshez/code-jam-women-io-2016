@@ -63,11 +63,8 @@ class A(CodeJamProblem):
     def __init__(self):
         super().__init__('A')
 
-    def generate_test_cases(self, input_file):
-        with open(input_file) as f:
-            for _ in range(int(next(f).strip())):
-                next(f)
-                yield [int(x) for x in next(f).strip().split(' ')]
+    def generate_test_cases(self, f):
+        return [int(x) for x in next(f).strip().split(' ')]
 
     def solve(self, t):
         c = Counter(t)

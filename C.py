@@ -38,12 +38,14 @@ T = 15.
 C = 1.
 V = 1.
 1 ≤ L ≤ 15.
+
 Small dataset 2
 
 1 ≤ T ≤ 100.
 1 ≤ C ≤ 50.
 1 ≤ V ≤ 50.
 1 ≤ L ≤ 15.
+
 Large dataset
 
 1 ≤ T ≤ 100.
@@ -69,14 +71,27 @@ from CodeJam import CodeJamProblem
 
 
 class C(CodeJamProblem):
+    MOD = 1000000007
+
     def __init__(self):
         super().__init__('C')
 
-    def generate_test_cases(self, input_file):
-        pass
+    def generate_test_case(self, f):
+        return [int(x) for x in next(f).strip().split(' ')]
 
     def solve(self, t):
-        pass
+        c, v, l = t
+        if l == 1:
+            return v
+        if l == 2:
+            return (c + v) * v
+        r = [v, c * v]
+        for _ in range(2, l + 1):
+            r_l = c * v * r[-2] + v * r[-1]
+            r.append(r_l % C.MOD)
+            r = r[-2:]
+        return r[-1]
 
 
-
+c = C()
+c.test()
