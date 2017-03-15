@@ -5,6 +5,20 @@ def float_formatter(f):
     return "%.06f" % f
 
 
+def exists(seq, cond):
+    for x in seq:
+        if cond(x):
+            return True
+    return False
+
+
+def find(seq, cond):
+    for x in seq:
+        if cond(x):
+            return x
+    return None
+
+
 class CodeJamProblem:
     def __init__(self, name, result_formatter=lambda x: '%s' % x):
         self.name = name
@@ -52,3 +66,4 @@ class CodeJamProblem:
 
     def large(self):
         self.stage('large')
+
