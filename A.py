@@ -63,8 +63,9 @@ class A(CodeJamProblem):
     def __init__(self):
         super().__init__('A')
 
-    def generate_test_cases(self, f):
-        return [int(x) for x in next(f).strip().split(' ')]
+    def next_test_case(self, f):
+        next(f) # skip number of products
+        return [int(x) for x in next(f).strip().split()]
 
     def solve(self, t):
         c = Counter(t)

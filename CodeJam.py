@@ -27,11 +27,11 @@ class CodeJamProblem:
     def generate_test_cases(self, input_file):
         with open(input_file) as f:
             for _ in range(int(next(f).strip())):
-                yield self.generate_test_case(f)
+                yield self.next_test_case(f)
 
-    # override this!
-    def generate_test_case(self, f):
-        return None
+    # override this! though the default implementation is good if each case is a list of integers on a single line
+    def next_test_case(self, f):
+        return [int(x) for x in next(f).strip().split()]
 
     # override this!
     def solve(self, t):
@@ -56,6 +56,9 @@ class CodeJamProblem:
             print("Test successful!")
         else:
             print("Test failed!")
+            print('expected:')
+            print(expected)
+            print('actual:')
             print(actual)
 
     def stage(self, stage):
@@ -66,4 +69,3 @@ class CodeJamProblem:
 
     def large(self):
         self.stage('large')
-
